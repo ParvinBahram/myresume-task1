@@ -9,21 +9,26 @@
 @tailwind component;
 @tailwind utilities;  */ 
 
+.theme-green{
+  --color-primary:#006045,
+  --color-primary-light:#00bc7d,
+}
+
 html{
   @apply  scroll-smooth
 }
 
 .item{
-  @apply  px-4 py-2  rounded-lg md:mx-2  mb-2 md:mb-0 text-lg font-bold 
+  @apply  px-4 py-2  rounded-lg md:mx-2  mb-2 md:mb-0 text-lg font-bold md:text-center
 }
 
 .btn{
-  @apply rounded-xl bg-purple-800 p-2 text-white outline-0 border-none  text-sm bg-purple-900 px-4  hover:bg-purple-600 hover:shadow-2xl 
+  @apply rounded-xl bg-purple-800 py-2 px-4 text-white outline-0 border-none  text-lg bg-purple-900 hover:bg-purple-600 hover:shadow-2xl 
 }
 
 
 .nav_links{
-  @apply flex flex-col w-full overflow-hidden max-h-0 opacity-0
+  @apply flex flex-col w-full  max-h-0 opacity-0
   md:flex-row  md:items-center md:w-auto md:max-h-screen md:opacity-100
 }
 .nav.nav_expanded .nav_links{
@@ -31,11 +36,11 @@ html{
 }
 
  .nav.nav_expanded .mobile-menu{
-  @apply hidden
+  @apply hidden opacity-0 scale-50 pointer-events-none
 }
 
 .nav.nav_expanded .closeBtn{
-  @apply block 
+  @apply block opacity-100 scale-100 pointer-events-auto
 }
 
 p{
@@ -43,7 +48,7 @@ p{
 }
 
 label{
-  @apply text-purple-700
+  @apply not-dark:text-purple-700
 }
 
 .input-style{
@@ -55,12 +60,12 @@ label{
 }
 
 .nav.nav_expanded a{
-  @apply w-full md:w-auto
+  @apply  md:w-auto
 }
 
 .btn-secondary{
-  @apply border border-1 border-purple-800 p-1  cursor-pointer rounded-sm text-purple-800  hover:bg-purple-200 dark:text-white
-}
+  @apply  p-1  cursor-pointer rounded-sm text-purple-600 text-lg hover:bg-purple-200 /*dark:text-white dark:hover:bg-none*/
+  }
 
 nav.nav_expanded a.link{
   @apply pl-6 pt-3 pb-3 no-underline
@@ -68,4 +73,24 @@ nav.nav_expanded a.link{
 
 .link{
   @apply  no-underline hover:text-purple-600
+}
+
+.dropdown-menu{
+  @apply hidden rounded-lg p-4  shadow-lg absolute top-0 right-25 bg-purple-100 outline-none md:top-10 md:-right-18 md:w-50
+}
+
+.dropdown-menu a{
+  @apply block text-purple-800 mb-4 pb-2 cursor-pointer border-b-2 border-b-gray-300 hover:text-purple-500
+}
+
+.dropdown-item{
+  @apply text-sm text-center 
+}
+
+.project-category{
+  @apply w-[450px] mx-auto md:w-full shadow-lg text-center rounded-xl
+}
+
+.btn-filter{
+  @apply text-sm font-bold md:text-lg outline-0  border-2 border-fuchsia-700 rounded-2xl bg-white text-fuchsia-700 p-2 text-lg hover:bg-fuchsia-200
 }
