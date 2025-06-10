@@ -4,11 +4,6 @@
    themes: light --default, dark --prefersdark;
  }
 
-/* 
- @tailwind base;
-@tailwind component;
-@tailwind utilities;  */ 
-
 .theme-green{
   --color-primary:#006045,
   --color-primary-light:#00bc7d,
@@ -35,12 +30,12 @@ html{
   @apply max-h-screen opacity-100 
 }
 
- .nav.nav_expanded .mobile-menu{
-  @apply hidden opacity-0 scale-50 pointer-events-none
+ .nav.nav_expanded #toggler .mobile-menu{
+  @apply  opacity-0 scale-50 pointer-events-none
 }
 
-.nav.nav_expanded .closeBtn{
-  @apply block opacity-100 scale-100 pointer-events-auto
+.nav.nav_expanded #toggler .closeBtn{
+  @apply opacity-100 scale-100 pointer-events-auto
 }
 
 p{
@@ -52,11 +47,11 @@ label{
 }
 
 .input-style{
-  @apply border border-2 border-purple-400  focus:border-purple-600  focus:outline-none  rounded-md bg-white 
+  @apply  border border-2 border-purple-400  focus:border-purple-600  focus:outline-none  rounded-md bg-white 
 }
 
 .error-input-style{
-  @apply border  border-red-400   focus:outline-none  focus:border-red-500 rounded-md bg-white 
+  @apply  border  border-red-400   focus:outline-none  focus:border-red-500 rounded-md bg-white 
 }
 
 .nav.nav_expanded a{
@@ -75,10 +70,6 @@ nav.nav_expanded a.link{
   @apply  no-underline hover:text-purple-600
 }
 
-.dropdown-menu{
-  @apply hidden rounded-lg p-4  shadow-lg absolute top-0 right-25 bg-purple-100 outline-none md:top-10 md:-right-18 md:w-50
-}
-
 .dropdown-menu a{
   @apply block text-purple-800 mb-4 pb-2 cursor-pointer border-b-2 border-b-gray-300 hover:text-purple-500
 }
@@ -87,10 +78,21 @@ nav.nav_expanded a.link{
   @apply text-sm text-center 
 }
 
-.project-category{
+/* .project-category{
   @apply w-[450px] mx-auto md:w-full shadow-lg text-center rounded-xl
-}
+} */
 
 .btn-filter{
-  @apply text-sm font-bold md:text-lg outline-0  border-2 border-fuchsia-700 rounded-2xl bg-white text-fuchsia-700 p-2 text-lg hover:bg-fuchsia-200
+  @apply text-sm font-bold md:text-lg text-blue-600  border-b border-b-blue-600
+}
+
+.active-filter-btn{
+  @apply  border-2 border-blue-500 rounded-2xl bg-blue-200   p-2
+}
+.latest, .earliest{
+  @apply cursor-pointer  
+}
+
+.active-sort-btn{
+  @apply text-blue-600
 }

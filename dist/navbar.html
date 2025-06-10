@@ -1,0 +1,39 @@
+
+ <nav class="nav relative flex justify-between shadow-md lg:justify-around items-center px-6  md:max-h-80 flex-wrap">
+      <div>
+      <img src="../assets/images/Logo1.png" alt="logo" class="w-24 h-24">
+      </div>
+      <input type="checkbox" value="dark" class="toggle theme-controller" />
+       <!-- <div>
+         <label class="swap swap-rotate justify-items-start">
+         <input type="checkbox" id="theme-controller"  value="dark" />
+         <i data-lucide="moon" class="w-10 h-10 swap-off" ></i>
+         <i data-lucide="sun"  class="swap-on h-10 w-10 fill-current"></i>
+        </label>
+      </div> -->
+       <div id="toggler" class=" px-2 md:hidden transition-transform duration-300 ease-out delay-150">
+        <div  class="mobile-menu  transition-all duration-600 ease-in-out opacity-100 transform scale-100">
+          <i data-lucide="menu" class="text-purple-500 mobile-menu w-12 h-12" aria-hidden="true"></i>
+        </div>
+        <div class="closeBtn hidden transition-all duration-600 ease-in-out opacity-0 transform scale-50 pointer-events-none">
+          <i data-lucide="x" class="w-12 h-12 text-purple-500" ></i>
+        </div>
+      </div> 
+      <ul class="nav_links">
+        <li class="item dropdown relative cursor-pointer"><a class="link  dropdown-link flex items-center" target="_blank">خدمات
+        <span><i data-lucide="chevron-left" class="hover:text-purple-600
+         rotate-0 md:-rotate-90 transition-transform duration-200 delay-200 md:pr-2"></i></span></a>
+         <div class="dropdown-menu ">
+          <a class="dropdown-item" href="#">طراحی سایت با کدنویسی</a>
+          <a class="dropdown-item" href="#">طراحی سایت با وردپرس</a>
+          <a class="dropdown-item" href="#">سئو و پشتیبانی</a>
+         </div>
+      </li>
+
+        <li class="item"><a class="link" href="pricing.html" target="_blank">تعرفه ها</a> </li>
+        <li class="item"><a class="link" href="#project">پروژه ها</a></li>
+        <li class="item md:hidden"><a class="btn w-full" href="#contact">ارتباط با من</a></li>
+      </ul>
+      
+      <a class="btn hidden md:block items-center" href="#contact" >ارتباط با من</a>
+  </nav>

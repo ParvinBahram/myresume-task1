@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +7,13 @@
   <link rel="stylesheet" href="./style.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <title>projects</title>
+  <title>test-projects</title>
 </head>
-<body>
+<body class="bg-white dark:bg-base-100 ">
   <div class="mx-auto max-w-7xl">
-     <div class="px-8 py-10">
+   <div id="navbar"></div>
+  <div class="mx-auto max-w-7xl shadow-md">
+    <div class="px-8 my-16 ">
     <h2 class="text-center text-3xl text-fuchsia-600 mb-10">یک دسته را انتخاب کنید</h2>
     <div class="px-8 flex flex-col justify-between items-center xl:flex-row max-w-6xl mx-auto">
     <div class="btns-section grid grid-rows-2 grid-cols-4 gap-4  md:flex md:flex-row lg:gap-x-8 justify-center text-center">
@@ -35,9 +37,24 @@
     <div class=" project-section my-12 px-8" >
     </div>
   </div>
+    <div id="footer"></div>
+</div>
   <script src="project.js"></script>
 <script>
     lucide.createIcons();
+  </script>
+  <script>
+    async function LoadHTML(selector, file){
+      const res = await fetch (file);
+      if (res.ok){
+        const text= await res.text();
+        document.querySelector(selector).innerHTML= text;
+      }else{
+        console.error(`خطا در بارگذاری ${file}`)
+      }
+    }
+    LoadHTML("#navbar","navbar.html");
+    LoadHTML("#footer","footer.html")
   </script>
 </body>
 </html>
