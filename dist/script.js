@@ -24,37 +24,38 @@ dropDown.addEventListener("mouseleave", hideMenu);
 
 
 // dark/light mode:
-  // const toggle = document.getElementById('theme-controller');
-  // const htmlEl = document.documentElement;
+  const toggleTheme= document.getElementById("theme-toggle");
+  const htmlEl = document.documentElement;
+  const savedTheme=localStorage.getItem("theme");
+  if(savedTheme==="dark"){
+    htmlEl.classList.add("dark");
+    toggleTheme.checked= true;
+  }else if(savedTheme==="light"){
+    htmlEl.classList.remove("dark");
+    toggleTheme.checked=false;
+  }else{
+    const preferDark =window.matchMedia("(prefers-color-scheme:dark)").matches;
+    if(preferDark){
+      htmlEl.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    }else{
+      htmlEl.classList.remove("dark");
+      localStorage.setItem("theme", "light")
+    }};
   
-  // const currentTheme = localStorage.getItem('theme') || 'light';
-  // htmlEl.setAttribute('data-theme', currentTheme);
-  // toggle.checked = currentTheme === 'dark';
+  toggleTheme.addEventListener("change", ()=> {
+    if(toggleTheme.checked){
+      htmlEl.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    }else{
+      htmlEl.classList.remove("dark");
+      localStorage.setItem("theme", "light")
+    }
+  })
 
-  // toggle.addEventListener('change', () => {
-  //   const newTheme = toggle.checked ? 'dark' : 'light';
-  //   htmlEl.setAttribute('data-theme', newTheme);
-  //   localStorage.setItem('theme', newTheme);
-  // });
 
 
-  // const toggle = document.getElementById('theme-controller');
-  // const htmlEl = document.documentElement;
-  
-  // let currentTheme = localStorage.getItem('theme') ;
-  // if(!currentTheme){
-  //   const preferDark= window.matchMedia("(prefers-color-scheme:dark)").matches;
-  //   currentTheme=preferDark?"dark" : "light";
-  // }
-  // htmlEl.setAttribute('data-theme', currentTheme);
-  // toggle.checked = currentTheme === 'dark';
-
-  // toggle.addEventListener('change', () => {
-  //   const newTheme = toggle.checked ? 'dark' : 'light';
-  //   htmlEl.setAttribute('data-theme', newTheme);
-  //   localStorage.setItem('theme', newTheme);
-  // });
-
+ // filter by category
   const projectItems =[
   {
     id:1,
@@ -70,7 +71,7 @@ dropDown.addEventListener("mouseleave", hideMenu);
     title:"سبدخرید",
     description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet alias rem autem ipsam",
     link:"https://tapsi.ir/",
-    createdAt:"6/7/2023"
+    createdAt:"6/7/2023",
   },
    {
     id:3,
@@ -115,10 +116,9 @@ dropDown.addEventListener("mouseleave", hideMenu);
   // },
 ]
 
-const projectSection = document.querySelector(".project-section");
+const projectSection = document.querySelector(".project_section");
 const btns= document.querySelectorAll(".btn-filter");
 const message= document.getElementById("categoryMessage");
-
 window.addEventListener("DOMContentLoaded",()=>{
     displayItem(projectItems)
 })
@@ -145,12 +145,13 @@ btns.forEach((btn)=>{
 
 function displayItem(menu){
   let result = menu.map(function(item) {
-   return `<div class="project-item outline-0 shadow-lg rounded-xl p-8 bg-amber-100 max-w-6xl mx-auto">
-        <h1 class="text-2xl text-blue-800">${item.title}</h1>
-        <p class="dark:text-black pt-8">${item.description}</p>
-        <a class="text-left block text-blue-800 pt-8 text-2xl" href=${item.link} target="_blank">${item.link}</a>
+   return `<div class="project-item outline-0 shadow-lg rounded-xl p-8 bg-gray-200 max-w-6xl mx-auto">
+        <h1 class="text-2xl text-purple-900">${item.title}</h1>
+        <p class="dark:text-black pt-8 pb-4 border-b border-b-gray-300">${item.description}</p>
+        <p class="pt-4 text-left text-gray-600" >${item.createdAt}</p>
+        <a class="text-left block text-gray-600 pt-8 text-2xl hover:text-gray-400" href=${item.link} target="_blank" rel="noopener noreferrer">${item.link}</a>
       </div>`
-  })
+  }).join("");
   projectSection.innerHTML= result;
 }
 
@@ -163,34 +164,40 @@ function displayItem(menu){
 })
  })
 
- const sortBtns =document.querySelectorAll(".sort-btn");
-  sortBtns.forEach((btn)=>{
-  btn.addEventListener("click", ()=>{
-     message.textContent="";
-    sortBtns.forEach((b)=>{
-      b.classList.remove("active-sort-btn");
-    })
-    btn.classList.add("active-sort-btn");
-})
- })
- 
-//  select sort buttons
-  sortBtns.forEach((btn)=>{
-  btn.addEventListener("click", ()=>{
-    const sortBy= btn.dataset.sort;
-    SortItems(projectItems, sortBy)
-  })
-})
+//  filter by date:
+const filterDateBtn = document.getElementById("filterDateBtn");
+const startDateInput = document.getElementById("startDate");
+const endDateInput = document.getElementById("endDate");
+const dateMessage = document.getElementById("dateMessage");
 
-//sort function
- function SortItems(items, sortBy){
- const sortRes =[...items].sort((a,b)=>{
-    const dateA= new Date(a.createdAt);
-    const dateB =new Date(b.createdAt);
-    return sortBy === "desc" ? dateB - dateA : dateA - dateB
-  })
- displayItem(sortRes);
-}
+
+filterDateBtn.addEventListener("click", () => {
+  dateMessage.textContent = "";
+
+  const start = startDateInput.value;
+  const end = endDateInput.value;
+
+  if (!start || !end) {
+    alert("لطفاً هر دو تاریخ را وارد کنید.");
+    return;
+  }
+
+  const startDate = new Date(start);
+  const endDate = new Date(end);
+
+  const filteredByDate = projectItems.filter(item => {
+    const itemDate = new Date(item.createdAt);
+    return itemDate >= startDate && itemDate <= endDate;
+  });
+
+  if (filteredByDate.length === 0) {
+    dateMessage.textContent = "پروژه‌ای در این بازه‌ی زمانی وجود ندارد";
+    projectSection.innerHTML = "";
+  } else {
+     dateMessage.textContent ="";
+    displayItem(filteredByDate);
+  }
+});
 
 
   // form validation:
@@ -221,12 +228,19 @@ function displayItem(menu){
   }
  ];
 
+for (const item of inputItems){
+  item.input.addEventListener("input",()=>{
+    item.input.classList.add("dirty");
+    Validation()
+  })
+}
+
  function Validation(){
-  let isValid = true;
+  let isValid = false;
    for(const item of inputItems ){
     const value =item.input.value.trim();
-
-  if(value==="" || !item.regEx.test(value)){
+if(item.input.classList.contains("dirty")){
+  if(value==="" || !item.regEx.test(value)|| value.lenght!==item.regEx.lenght){
     item.feedback.style.color= "red";
     item.feedback.textContent= value==="" ? "ورودی نمیتواند خالی باشد" : "مقدار نامعتبر است";
     item.input.classList.remove("input-style");
@@ -237,8 +251,10 @@ function displayItem(menu){
     item.feedback.style.color= "green";
     item.input.classList.remove("error-input-style");
     item.input.classList.add("input-style");
+    isValid=true;
   }
 }
+   }
 return isValid;
 }
 
@@ -248,12 +264,36 @@ for (const item of inputItems){
 
 subBtn.addEventListener("click", (e)=>{
   e.preventDefault();
-  if(Validation()){
-    alert("پیام با موفقیت ثبت شد")
-  }else{
-    alert("فیلدها را به درستی وارد کنید")
-  }
+  CheckShowModal();
 })
 
+// open/close modal:
+const modal=document.getElementById("modal");
+const closeModal= document.getElementById("closeModal");
+const modalMessage=document.querySelector(".modal-message");
 
+function ShowModal(){
+  modal.classList.remove("hidden");
+  setTimeout(()=>{
+    modal.classList.remove("opacity-0");
+    modal.classList.add("opacity-100")
+  },150)
+}
+function CloseModal(){
+  modal.classList.remove("opacity-100");
+  modal.classList.add("opacity-0");
+  setTimeout(()=>{
+    modal.classList.add("hidden");
+  },1000)
+}
+function CheckShowModal(){
+  if(Validation()){
+    modalMessage.textContent="پیام با موفقیت ثبت شد";
+  }else{
+     modalMessage.textContent="فیلدها را به درستی وارد کنید"
+  }
+  ShowModal();
+}
+
+closeModal.addEventListener("click", CloseModal);
 

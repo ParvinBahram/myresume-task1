@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" data-theme="light" >
+<html lang="fa" dir="rtl" class="dark" >
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,21 +8,16 @@
 <script src="https://unpkg.com/lucide@latest"></script>
   <title>my resume</title>
 </head>
-<body class="bg-white dark:bg-base-100 ">
+<body class="bg-white  dark:bg-gray-800 dark:text-white ">
   <div class="mx-auto max-w-7xl">
     
- <nav class="nav relative flex justify-between shadow-md lg:justify-around items-center px-6  md:max-h-80 flex-wrap">
+ <nav class="bg-gray-100 dark:bg-gray-700 nav sticky top-0 flex justify-between shadow-md lg:justify-around items-center px-6  md:max-h-80 flex-wrap">
       <div>
       <img src="../assets/images/Logo1.png" alt="logo" class="w-24 h-24">
       </div>
-      <input type="checkbox" value="dark" class="toggle theme-controller" />
-       <!-- <div>
-         <label class="swap swap-rotate justify-items-start">
-         <input type="checkbox" id="theme-controller"  value="dark" />
-         <i data-lucide="moon" class="w-10 h-10 swap-off" ></i>
-         <i data-lucide="sun"  class="swap-on h-10 w-10 fill-current"></i>
-        </label>
-      </div> -->
+       <div class="relative  flex justify-center items-center">
+         <input  id="theme-toggle" class="w-5 h-5" type="checkbox"/>
+      </div>
        <div id="toggler" class=" px-2 md:hidden ">
         <div  class="mobile-menu  transition-all duration-300 ease-in-out opacity-100 transform scale-100">
           <i data-lucide="menu" class="text-purple-500 w-12 h-12" aria-hidden="true"></i>
@@ -49,7 +44,7 @@
       
       <a class="btn hidden md:block items-center" href="#contact" >ارتباط با من</a>
   </nav>
-  <section class="mt-8 rounded-2xl md:[border-radius:5%_5%_60%_60%] shadow-2xl flex flex-col md:flex-row items-center md:gap-x-16 justify-between pt-10 pb-25 px-16 dark:bg-transparent">
+  <section class="bg-gradient-to-r from-purple-400 to-purple-100 dark:bg-none mt-8 rounded-2xl md:[border-radius:5%_5%_60%_60%] shadow-2xl flex flex-col md:flex-row items-center md:gap-x-16 justify-between pt-10 pb-25 px-16 ">
   <div>
       <h1 class="text-3xl pb-4 font-bold mt-8">سلام به سایت من خوش اومدین</h1>
       <h2 class="text-2xl">پروین بهرام هستم برنامه نویس فرانت اند،  کارشناسی مهندسی نرم افزار دانشگاه پیامنور شهریار</h2>
@@ -74,10 +69,10 @@
   </section >
  <main id="project" class=" px-6 py-16 shadow-lg">
     <h2 class="text-center text-3xl font-bold text-purple-600  mb-10" >پروژه های انجام شده</h2>
-     <h2 class="text-center text-3xl text-blue-600 mb-10">یک دسته را انتخاب کنید</h2>
-    <div class="px-8 flex flex-col justify-between items-center xl:flex-row max-w-6xl mx-auto">
+     <h2 class="text-center text-3xl text-purple-600 mb-10">یک دسته را انتخاب کنید</h2>
+    <div class="px-8 flex flex-col justify-between items-center  max-w-6xl mx-auto">
     <div class="btns-section grid grid-rows-2 grid-cols-4 gap-6 md:flex md:flex-row lg:gap-x-8 justify-center text-center">
-      <button class="btn-filter" data-category="all" >همه</button>
+      <button class="btn-filter active-filter-btn" data-category="all"  >همه</button>
       <button class="btn-filter" data-category="html-css" >Html-Css</button>
       <button class="btn-filter" data-category="tailwind" >تیلویند</button>
       <button class="btn-filter" data-category="js" >JS</button>
@@ -86,18 +81,24 @@
       <button class="btn-filter" data-category="wp" >سایت وردپرسی</button>
       <button class="btn-filter" data-category="seo" >سئو</button>
     </div>
-    <div class="flex gap-x-4 mt-8 xl:mt-0">
-      <i data-lucide="arrow-down-wide-narrow"  class="w-8 h-8"></i>
-      <p data-sort="desc" class="sort-btn latest">جدیدترین</p>
-      <p data-sort="asc" class="sort-btn earliest">قدیمی ترین</p>
-    </div>
+  <div class="date-filter text-center my-8 flex flex-col md:flex-row gap-4 items-center justify-center">
+   <label>از تاریخ:
+    <input type="date" id="startDate" class="border rounded p-1">
+   </label>
+   <label>تا تاریخ:
+    <input type="date" id="endDate" class="border rounded p-1">
+  </label>
+   <button id="filterDateBtn" class="border-2 border-purple-700 bg-purple-200 text-purple-700  px-4 py-1 rounded-xl"> اعمال فیلتر</button>
+</div>
      </div>
          <p id="categoryMessage" class="text-red-600 font-bold px-8 my-8 text-center"></p>
-    <div class="project-section my-12 mx-8">
+         <p id="dateMessage" class="text-red-600 font-bold px-8 my-8 text-center"></p>
+
+    <div class="project_section my-12 mx-8 flex flex-col md:grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       </div>
-     <a class="btn  py-12 w-full mt-12 md:w-[70%] flex shadow-4xl md:mx-auto" href="projects.html" target="_blank">مشاهده صفحه پروژه ها</a>
+     <a class="btn block py-12 w-full mt-12 md:w-[70%]  shadow-4xl md:mx-auto text-center" href="projects.html" target="_blank">مشاهده صفحه پروژه ها</a>
   </main> 
- <footer id="contact" class="px-6 my-18 mx-8  not-dark:bg-radial  not-dark:to-purple-200 dark:bg-none" >
+ <footer id="contact" class="px-6 my-18 mx-8 bg-radial  to-purple-200 dark:bg-none" >
         <div class="flex flex-col lg:flex-row w-full lg:items-center lg:gap-x-12 space-y-16">
           <div class="lg:2/5">
                 <h1 class="text-2xl font-semibold ">
@@ -159,6 +160,11 @@
               </div>
               <button type="submit" id="subBtn" class="w-full  px-6 py-3 mt-6 text-lg font-medium tracking-wide text-white capitalize transition-colors duration-300 transform btn">ثبت</button>
             </form>
+              <div id="modal" class="bg-gray-500 p-6 rounded-xl max-w-5xl hidden text-center hidden fixed  top-30 left-1/2 -translate-x-1/2 transition-opacity duration-300 opacity-0 shadow-xl">
+                <p class="modal-message text-white text-center mx-6"></p>
+                <button id="closeModal" class="btn mx-auto mt-4 p-2 rounded-2xl">بستن</button>
+              </div>
+              
           </div>
         </div>
   </footer >

@@ -1,8 +1,5 @@
 @import "tailwindcss";
-
- @plugin "daisyui" {
-   themes: light --default, dark --prefersdark;
- }
+@custom-variant dark (&:where(.dark, .dark *));
 
 .theme-green{
   --color-primary:#006045,
@@ -18,7 +15,7 @@ html{
 }
 
 .btn{
-  @apply rounded-xl bg-purple-800 py-2 px-4 text-white outline-0 border-none  text-lg bg-purple-900 hover:bg-purple-600 hover:shadow-2xl 
+  @apply  text-center rounded-xl bg-purple-800 py-2 px-4 text-white outline-0 border-none  text-lg bg-purple-900 hover:bg-purple-600 hover:shadow-2xl 
 }
 
 
@@ -43,15 +40,15 @@ p{
 }
 
 label{
-  @apply not-dark:text-purple-700
+  @apply text-purple-700 dark:text-white
 }
 
 .input-style{
-  @apply  border border-2 border-purple-400  focus:border-purple-600  focus:outline-none  rounded-md bg-white 
+  @apply  border border-2 border-purple-400  focus:border-purple-600  focus:outline-none  rounded-md bg-white dark:text-black
 }
 
 .error-input-style{
-  @apply  border  border-red-400   focus:outline-none  focus:border-red-500 rounded-md bg-white 
+  @apply  border  border-red-400   focus:outline-none  focus:border-red-500 rounded-md bg-white dark:text-black
 }
 
 .nav.nav_expanded a{
@@ -78,16 +75,11 @@ nav.nav_expanded a.link{
   @apply text-sm text-center 
 }
 
-/* .project-category{
-  @apply w-[450px] mx-auto md:w-full shadow-lg text-center rounded-xl
-} */
-
 .btn-filter{
-  @apply text-sm font-bold md:text-lg text-blue-600  border-b border-b-blue-600
-}
+  @apply text-sm font-bold md:text-lg   }
 
 .active-filter-btn{
-  @apply  border-2 border-blue-500 rounded-2xl bg-blue-200   p-2
+  @apply  border-2 border-purple-500 rounded-2xl bg-purple-200   p-2 dark:text-purple-700
 }
 .latest, .earliest{
   @apply cursor-pointer  
