@@ -81,10 +81,8 @@ nav.nav_expanded a.link{
 .active-filter-btn{
   @apply  border-2 border-purple-500 rounded-2xl bg-purple-200   p-2 dark:text-purple-700
 }
-.latest, .earliest{
-  @apply cursor-pointer  
-}
 
-.active-sort-btn{
-  @apply text-blue-600
+
+.badge{
+  @apply text-sm rounded-full border-2 border-purple-800 text-purple-800 text-center w-[25%]   p-1 flex items-center justify-center
 }

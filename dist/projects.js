@@ -27,22 +27,14 @@ dropDown.addEventListener("mouseleave", hideMenu);
 // dark/light mode:
  const toggleTheme= document.getElementById("theme-toggle");
   const htmlEl = document.documentElement;
-  const savedTheme=localStorage.getItem("theme");
-  if(savedTheme==="dark"){
-    htmlEl.classList.add("dark");
-    toggleTheme.checked= true;
-  }else if(savedTheme==="light"){
-    htmlEl.classList.remove("dark");
-    toggleTheme.checked=false;
-  }else{
-    const preferDark =window.matchMedia("(prefers-color-scheme:dark)").matches;
+  const preferDark =window.matchMedia("(prefers-color-scheme:dark)").matches;
     if(preferDark){
       htmlEl.classList.add("dark");
       localStorage.setItem("theme", "dark");
     }else{
       htmlEl.classList.remove("dark");
       localStorage.setItem("theme", "light")
-    }};
+    };
   toggleTheme.addEventListener("change", ()=> {
     if(toggleTheme.checked){
       htmlEl.classList.add("dark");
@@ -54,15 +46,13 @@ dropDown.addEventListener("mouseleave", hideMenu);
   })
 
 
-
-
   // filter by category
 const projectItems =[
   {
     id:1,
     category:"html-css",
     title:"سایت تپسی",
-    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet alias rem autem ipsamLorem,",
+    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. ",
     link:"https://tapsi.ir",
     createdAt:"6/6/2023",
   },
@@ -86,7 +76,7 @@ const projectItems =[
     id:4,
     category:"tailwind",
     title:"صفحه اصلی و صفحه محصول یک سایت فروشگاهی",
-    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet alias rem autem ipsam",
+    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit ",
     link:"https://tapsi.ir",
     createdAt:"2/14/2024",
   },
@@ -132,7 +122,6 @@ const projectItems =[
     createdAt:"5/5/2023",
   },
 ]
-
 const projectSection = document.querySelector(".project-section");
 const btns= document.querySelectorAll(".btn-filter");
 
@@ -140,48 +129,64 @@ window.addEventListener("DOMContentLoaded",()=>{
     displayItem(projectItems)
 })
 
-btns.forEach((btn)=>{
-  btn.addEventListener('click',(e)=>{
-    const message= document.getElementById("categoryMessage");
-    message.textContent="";
+const selectedCategories = new Set(); // آرایه‌ای برای ذخیره دسته‌های انتخاب‌شده
+
+btns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
     const category = e.currentTarget.dataset.category;
-    const categoryItems= projectItems.filter((item)=>{
-      if(item.category === category){
-        return item;
-      }
-    });
-    if(category==="all"){
-      displayItem(projectItems)
-    }else if(categoryItems.length===0){
-      message.textContent= "پروژه ای با این دسته بندی وجود ندارد";
-      projectSection.innerHTML = "";
-    }else{
-      displayItem(categoryItems);
+
+    if (category === "all") {
+      selectedCategories.clear();
+      btns.forEach((b) => b.classList.remove("active-filter-btn"));
+      btn.classList.add("active-filter-btn");
+      displayItem(projectItems);
+      return;
     }
-   
-  })
-})
+
+    // حذف حالت "همه"
+    document.querySelector('[data-category="all"]')?.classList.remove("active-filter-btn");
+
+    // سوییچ فعال/غیرفعال
+    if (selectedCategories.has(category)) {
+      selectedCategories.delete(category);
+      btn.classList.remove("active-filter-btn");
+    } else {
+      selectedCategories.add(category);
+      btn.classList.add("active-filter-btn");
+    }
+
+    // فیلتر نهایی
+    const filteredItems = projectItems.filter((item) =>
+      selectedCategories.has(item.category)
+    );
+
+    const message = document.getElementById("categoryMessage");
+    if (selectedCategories.size === 0) {
+      displayItem(projectItems);
+      message.textContent = "";
+    } else if (filteredItems.length === 0) {
+      message.textContent = "پروژه‌ای با این دسته‌بندی‌ها یافت نشد.";
+      projectSection.innerHTML = "";
+    } else {
+      message.textContent = "";
+      displayItem(filteredItems);
+    }
+  });
+});
+
 
 function displayItem(menu){
   let result = menu.map(function(item) {
-   return `<div class="project-item outline-0 shadow-lg rounded-xl p-8 bg-gray-200 max-w-6xl mx-auto">
+   return `<div class="project-item outline-0 shadow-lg rounded-xl px-6 py-4 bg-gray-200 max-w-6xl mx-auto">
         <h1 class="text-2xl text-purple-800">${item.title}</h1>
-        <p class="dark:text-black pt-8 pb-4 border-b border-b-gray-300">${item.description}</p>
-        <p class="pt-4 text-left text-gray-600" >${item.createdAt}</p>
-        <a class="text-left block text-gray-600 pt-4 text-2xl hover:text-gray-400" href=${item.link} target="_blank" rel="noopener noreferrer">${item.link}</a>
+        <div dir="ltr" class="flex items-center"><p class="badge">${item.category}</p></div>
+        <p class="dark:text-black pt-4 pb-2 border-b border-b-gray-300">${item.description}</p>
+        <p class="pt-2 text-left text-gray-600 text-sm" >${item.createdAt}</p>
+        <a class="text-left block text-gray-600 pt-2 text-2xl hover:text-gray-400" href=${item.link} target="_blank" rel="noopener noreferrer">${item.link}</a>
       </div>`
   }).join("");
   projectSection.innerHTML= result;
 }
-
- btns.forEach((btn)=>{
-  btn.addEventListener("click", ()=>{
-    btns.forEach((b)=>{
-      b.classList.remove("active-filter-btn");
-    })
-    btn.classList.add("active-filter-btn");
-})
- })
 
 
 
@@ -202,9 +207,10 @@ filterDateBtn.addEventListener("click", () => {
     alert("لطفاً هر دو تاریخ را وارد کنید.");
     return;
   }
-
   const startDate = new Date(start);
+    startDate.setHours(0,0,0,0);
   const endDate = new Date(end);
+    endDate.setHours(23,59,59,999);
   const filteredByDate = projectItems.filter(item => {
     const itemDate = new Date(item.createdAt);
     return itemDate >= startDate && itemDate <= endDate;
@@ -234,16 +240,19 @@ filterDateBtn.addEventListener("click", () => {
      input: document.getElementById("name"),
      feedback:document.getElementById("nameCheck"),
      regEx :/^[a-zA-z0-9آ-ی\s_]{5,20}$/,
+     label: "نام"
   },
   {
      input :document.getElementById("userName"),
      feedback:document.getElementById("userNameCheck"),
      regEx:/^[a-zA-z0-9@.]{11,30}$/,
+     label:"ایمیل،شماره تلفن"
   },
   {
      input :document.getElementById("message"),
      feedback :document.getElementById("messageCheck"),
      regEx: /^[a-zA-z0-9آ-ی.@\s\-_*+]{30,500}$/,
+     label:"پیام"
   }
  ];
 
@@ -253,15 +262,17 @@ for (const item of inputItems){
     Validation()
   })
 }
-
  function Validation(){
-  let isValid = false;
+  let isValid = true;
+  const errorMessage =[];
    for(const item of inputItems ){
     const value =item.input.value.trim();
 if(item.input.classList.contains("dirty")){
   if(value==="" || !item.regEx.test(value)){
+    const msg = value==="" ? "ورودی نمیتواند خالی باشد" : "مقدار نامعتبر است";
+    errorMessage.push(`${item.label} : ${msg}`);
     item.feedback.style.color= "red";
-    item.feedback.textContent= value==="" ? "ورودی نمیتواند خالی باشد" : "مقدار نامعتبر است";
+    item.feedback.textContent= msg ;
     item.input.classList.remove("input-style");
     item.input.classList.add("error-input-style");
     isValid=false;
@@ -270,23 +281,18 @@ if(item.input.classList.contains("dirty")){
     item.feedback.style.color= "green";
     item.input.classList.remove("error-input-style");
     item.input.classList.add("input-style");
-    isValid=true;
   }
 }
-   }
-return isValid;
 }
-
-for (const item of inputItems){
-  item.input.addEventListener("input", Validation)
+return {isValid, errorMessage};
 }
 subBtn.addEventListener("click", (e)=>{
   e.preventDefault();
+  for (const item of inputItems){
+        item.input.classList.add("dirty");
+  }
   CheckShowModal();
 })
-
-
-
 
 // open/close modal:
 const modal=document.getElementById("modal");
@@ -308,10 +314,11 @@ function CloseModal(){
   },1000)
 }
 function CheckShowModal(){
-  if(Validation()){
-    modalMessage.textContent="پیام با موفقیت ثبت شد";
+  const result= Validation();
+  if(result.isValid){
+    modalMessage.textContent=`${"✅ "}${"پیام با موفقیت ثبت شد"}`;
   }else{
-     modalMessage.textContent="فیلدها را به درستی وارد کنید"
+     modalMessage.innerHTML=`${"❌"}${"<br>"}${result.errorMessage.join("<br>")}`;
   }
   ShowModal();
 }
