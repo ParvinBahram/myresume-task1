@@ -131,7 +131,7 @@ export function renderFilter(containerSelector, renderProject) {
           message.textContent = "";
           document.querySelector("[data-category='all']").classList.add("active-filter-btn");
           renderProject(projectItems);
-        } else if (filteredItems.length === 0) {
+        } else if (filteredItems.length  === 0) {
           message.textContent = "پروژه‌ای با این دسته‌بندی وجود ندارد";
           renderProject([]);
         } else {
