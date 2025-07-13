@@ -20,7 +20,7 @@ export function renderFilter(containerSelector, renderProject) {
   if (enableCategory) {
     html += 
       `<div>
-      <div class="relative md:w-[70%] mx-auto" >
+      <div class="relative md:w-[70%] mx-auto " >
       <div id="category-btn" class="flex justify-between cursor-pointer gap-x-4 px-4 items-center  border border-gray-300 rounded-lg">
         <p class="md:text-xl md:span-2 py-2 text-right shrink-0 md:shrink-1"> دسته‌بندی</p>
         <span class="md:pl-2"><i data-lucide="chevron-down"></i></span>
@@ -38,7 +38,7 @@ export function renderFilter(containerSelector, renderProject) {
         </ul>
       </div>
       </div>
-      <p id="categoryMessage" class="text-red-600 font-bold px-8 my-8 text-center"></p>
+      <p id="categoryMessage" class="text-red-600 font-bold px-8  text-center"></p>
       </div>`
     ;
   }
@@ -46,10 +46,11 @@ export function renderFilter(containerSelector, renderProject) {
   // فیلتر تاریخ
   if (enableDate) {
     html += 
-`<div>
-<div class="relative">
-        <p id="filter-btn" class="md:text-lg md:hidden shrink-0 whitespace-nowrap cursor-pointer border border-gray-300 rounded-lg p-2">فیلتر تاریخ</p>
-        <div id="date-filter" class="hidden absolute top-15 -right-30 bg-white dark:bg-gray-800 md:static md:flex md:px-6 md:my-4 space-y-2 flex flex-col">
+`<div class="flex justify-center">
+<div class="">
+
+        <p id="filter-btn" class="md:text-lg md:hidden shrink-0 whitespace-nowrap cursor-pointer rounded-lg p-2 my-4">فیلتر تاریخ</p>
+        <div id="date-filter" class="py-4 hidden px-4  bg-white dark:bg-gray-800 md:static md:flex md:px-6 md:my-4 space-y-2 flex flex-col">
           <label class="text-black">از تاریخ:
             <input type="range" id="startDate" min="0" max="1000" value="0" class="rounded">
             <span class="text-black dark:text-white" id="startDateLabel"></span>

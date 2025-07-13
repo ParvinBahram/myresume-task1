@@ -1,14 +1,6 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-.theme-green{
-  --color-primary:#006045,
-  --color-primary-light:#00bc7d,
-}
-
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
 
 html{
   @apply  scroll-smooth
@@ -91,7 +83,7 @@ nav.nav_expanded a.link{
 }
 
 .badge{
-  @apply text-sm rounded-full border-2 border-purple-700 text-purple-800 text-center w-[25%] p-1 flex items-center justify-center
+  @apply text-sm rounded-full text-purple-800 text-center w-[35%] p-1 flex items-center justify-center
 }
 
 .status{

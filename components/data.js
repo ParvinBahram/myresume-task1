@@ -7,6 +7,7 @@ export  const projectItems =[
     link:"https://tapsi.ir",
     createdAt:"6/6/2023",
     completed: true,
+   
   },
    {
     id:2,
@@ -15,7 +16,7 @@ export  const projectItems =[
     description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet alias rem autem ipsam",
     link:"https://tapsi.ir",
     createdAt:"6/7/2023",
-        completed: true,
+    completed: true,
 
   },
    {
