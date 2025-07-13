@@ -1,7 +1,7 @@
-import { projectList} from '../components/projectSection.js';
-import { projectItems }from '../components/data.js' ;
-import { renderFilter } from '../components/filterSection.js';
 
+import { projectList} from './components/projectSection.js';
+import { projectItems }from './components/data.js' ;
+import { renderFilter } from './components/filterSection.js';
 
 // mobile menu:
 const toggler = document.querySelector("#toggler");
@@ -9,6 +9,7 @@ const navbar = document.querySelector(".nav");
 toggler.addEventListener("click",(e)=>{
   navbar.classList.toggle("nav_expanded");
 })
+
 
 //show/hide dropdown :
 const dropDown = document.querySelector(".dropdown");
@@ -22,22 +23,24 @@ function hideMenu() {
   dropDownMenu.classList.remove("opacity-100", "visible", "translate-y-0");
   dropDownMenu.classList.add("opacity-0", "invisible", "translate-y-2");
 }
-
 dropDown.addEventListener("mouseenter", showMenu);
 dropDown.addEventListener("mouseleave", hideMenu);
 
 
+
 // dark/light mode:
-  const toggleTheme= document.getElementById("theme-toggle");
+    const toggleTheme= document.getElementById("theme-toggle");
   const htmlEl = document.documentElement;
   const savedTheme = localStorage.getItem("theme");
   const preferDark =window.matchMedia("(prefers-color-scheme:dark)").matches;
   if(savedTheme === 'dark' ||(!savedTheme && preferDark)){
     htmlEl.classList.add('dark');
     localStorage.setItem("theme", "dark");
+
   }else{
       htmlEl.classList.remove('dark');
-      localStorage.setItem("theme", "light")
+      localStorage.setItem("theme", "light");
+
   }
   const currentTheme = localStorage.getItem('theme');
   if(currentTheme==="dark" ||(!currentTheme && preferDark)) toggleTheme.checked = true;
@@ -51,7 +54,7 @@ dropDown.addEventListener("mouseleave", hideMenu);
     }
   })
 
-
+  
 const projectSection = document.querySelector(".project_section");
 window.addEventListener("DOMContentLoaded",()=>{
   renderProject(projectItems);
@@ -63,10 +66,9 @@ window.addEventListener("DOMContentLoaded",()=>{
   projectSection.innerHTML=result
  }
  
- 
 
 
-  // form validation:
+ // form validation:
  const nameInput = document.getElementById("name");
  const userNameInput = document.getElementById("userName");
  const messageInput = document.getElementById("message");
@@ -76,7 +78,7 @@ window.addEventListener("DOMContentLoaded",()=>{
  const myForm = document.getElementById("getInTouch");
  const subBtn = document.getElementById("subBtn");
 
-const inputItems =[
+ const inputItems =[
   {
      input: document.getElementById("name"),
      feedback:document.getElementById("nameCheck"),
@@ -154,25 +156,20 @@ function CloseModal(){
     modal.classList.add("hidden");
   },1000)
 }
+
 function CheckShowModal(){
   const result= Validation();
   if(result.isValid){
     modalMessage.textContent=`${"✅ "}${"پیام با موفقیت ثبت شد"}`;
-    modal.classList.remove("bg-red-300");
-    modalMessage.classList.remove("text-red-800")
-    modal.classList.add("bg-green-200"); 
-    modalMessage.classList.add("text-green-800")
+    modal.classList.remove("border-4", "border-red-500");
+    modal.classList.add("border-4", "border-green-500"); 
 
   }else{
-     modalMessage.innerHTML=`${"<br>"}${result.errorMessage.join("<br>")}`;
-       modal.classList.remove("bg-green-200");
-       modal.classList.add("bg-red-200");
-       modalMessage.classList.remove("text-green-800")
-       modalMessage.classList.add("text-red-800");
+     modalMessage.innerHTML=`${"❌"}${"<br>"}${result.errorMessage.join("<br>")}`;
+       modal.classList.remove("border-4", "border-green-500");
+       modal.classList.add("border-4", "border-red-500");
 
   }
   ShowModal();
 }
 closeMdl.addEventListener("click", CloseModal)
-
-

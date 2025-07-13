@@ -1,29 +1,29 @@
 @font-face {
   font-family: "Vazirmatn";
-  /* font-weight: 700; */
+  font-weight: 700;
   font-style: normal;
   src: url("../assets/font/Vazirmatn-Bold.woff2");
 }
 @font-face {
   font-family: "Vazirmatn";
-  /* font-weight: 500; */
+  font-weight: 500;
   font-style: normal;
-  src: url("../assets/font/Vazirmatn-Regular.woff2");
+  src: url("./assets/font/Vazirmatn-SemiBold.woff2");
 }
 
 @font-face {
   font-family: "Vazirmatn";
-  /* font-weight: 300; */
-  src: url("../assets/font/Vazirmatn-Bold.woff2");
+  font-weight: 300;
+  src: url("./assets/font/Vazirmatn-Medium.woff2");
 }
 
 @font-face {
   font-family: "Vazirmatn";
-  /* font-weight: 200; */
-  src: url("../assets/font/Vazirmatn-Bold.woff2");
+  font-weight: 200;
+  src: url("./assets/font/Vazirmatn-Regular.woff2");
 }
 
-body, button, input, a,textarea{
+body, button, input, a,textarea, li,link, h1,h2,h3{
   font-family: "Vazirmatn";
 }
 
