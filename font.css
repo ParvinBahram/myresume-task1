@@ -23,7 +23,7 @@
   src: url("./assets/font/Vazirmatn-Regular.woff2");
 }
 
-body, button, input, a,textarea, li,link, h1,h2,h3{
+body, button, input, a,textarea, {
   font-family: "Vazirmatn";
 }
 

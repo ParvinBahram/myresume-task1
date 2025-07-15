@@ -46,17 +46,16 @@ export function renderFilter(containerSelector, renderProject) {
   // فیلتر تاریخ
   if (enableDate) {
     html += 
-`<div class="flex justify-center">
-<div class="">
-
+  `<div class="md:w-full w-max">
+    <div class="md:w-full ">
         <p id="filter-btn" class="md:text-lg md:hidden shrink-0 whitespace-nowrap cursor-pointer rounded-lg p-2 my-4">فیلتر تاریخ</p>
-        <div id="date-filter" class="py-4 hidden px-4  bg-white dark:bg-gray-800 md:static md:flex md:px-6 md:my-4 space-y-2 flex flex-col">
-          <label class="text-black">از تاریخ:
-            <input type="range" id="startDate" min="0" max="1000" value="0" class="rounded">
+        <div id="date-filter" class="py-4 hidden px-4   bg-white dark:bg-gray-800 md:static md:flex  md:px-6 md:my-4 space-y-2 flex flex-col">
+          <label class="text-black md:text-center">از تاریخ:
+            <input type="range" id="startDate" min="0" max="1000" value="0" class="md:mx-auto rounded md:block xl:inline-block ">
             <span class="text-black dark:text-white" id="startDateLabel"></span>
           </label>
-          <label class="text-blue-800">تا تاریخ:
-            <input type="range" id="endDate" min="0" max="1000" value="1000" class="rounded">
+          <label class="text-blue-800 md:text-center">تا تاریخ:
+            <input type="range" id="endDate" min="0" max="1000" value="1000" class="md:mx-auto rounded md:block xl:inline-block ">
             <span class="text-black dark:text-white" id="endDateLabel"></span>
           </label>
           <button id="filterDateBtn" class="border-2 mx-auto border-purple-700 bg-purple-200 text-purple-700 w-40 px-4 py-1 rounded-xl">اعمال فیلتر</button>

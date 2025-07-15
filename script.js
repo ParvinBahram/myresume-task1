@@ -158,7 +158,7 @@ function CheckShowModal(){
   const result= Validation();
   if(result.isValid){
     modalMessage.textContent=`${"✅ "}${"پیام با موفقیت ثبت شد"}`;
-    modal.classList.remove("bg-red-300");
+    modal.classList.remove("bg-red-200");
     modalMessage.classList.remove("text-red-800")
     modal.classList.add("bg-green-200"); 
     modalMessage.classList.add("text-green-800")

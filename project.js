@@ -161,13 +161,16 @@ function CheckShowModal(){
   const result= Validation();
   if(result.isValid){
     modalMessage.textContent=`${"✅ "}${"پیام با موفقیت ثبت شد"}`;
-    modal.classList.remove("border-4", "border-red-500");
-    modal.classList.add("border-4", "border-green-500"); 
-
+    modal.classList.remove("bg-red-200");
+    modalMessage.classList.remove("text-red-800")
+    modal.classList.add("bg-green-200"); 
+    modalMessage.classList.add("text-green-800")
   }else{
-     modalMessage.innerHTML=`${"❌"}${"<br>"}${result.errorMessage.join("<br>")}`;
-       modal.classList.remove("border-4", "border-green-500");
-       modal.classList.add("border-4", "border-red-500");
+      modalMessage.innerHTML=`${"<br>"}${result.errorMessage.join("<br>")}`;
+       modal.classList.remove("bg-green-200");
+       modal.classList.add("bg-red-200");
+       modalMessage.classList.remove("text-green-800")
+       modalMessage.classList.add("text-red-800");
 
   }
   ShowModal();

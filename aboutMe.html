@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <title>درباره من</title>
+
+</head>
+<body >
+  <div class="mx-auto max-w-6xl ">
+    <div id="showAboutMe" class="px-8 py-6 text-bold  bg-green-100 text-2xl text-green-700 mt-8 mb-16"></div>
+    <div id="showAboutMyJob" class="px-8 py-6 text-bold text-2xl bg-blue-100 text-blue-700"></div>
+    <script>
+      const aboutMe ={
+        header:"About Me",
+        name:"Parvin",
+        lastName:"Bahram",
+        job:"developer",
+        country: "Iran",
+        interestings:["programming"," Art ", "Being with family ","and watching nature in silence"],
+        ShowAboutMe(){
+           return `<h1 class="text-xl text-center font-bold">${this.header}</h1><br> my name is ${this.name}, my lastName is ${this.lastName}, you can call me MS ${this.lastName}<br>
+           I am from ${this.country}<br> 
+           its really enjoyable to spend time on ${this.interestings.join(",")}😊<br>
+           `
+        } }
+
+      const aboutMyJob ={
+        header: "About My Job",
+        title:"front-end developer",
+        degree: "Bachelor of Computer Engineering",
+        skills:["HTML-CSS", " JavaScript ", "Tailwind ", "React.js ", "Next.js"],
+        yearsOfExperience:2,
+        otherFields:["back-end", " and SEO"],
+        ShowAboutMyJob(){
+          return `
+          <h1 class="text-xl text-center font-bold">${this.header}</h1><br>
+          I am working as a ${this.title}.<br>I have completed my studies up to ${this.degree}.<br>
+          my programming skills are ${this.skills.join(",")}<br>
+          I have been programming for about ${this.yearsOfExperience} years.<br>
+          In the future, after get good at ${this.title},I'd like to learn ${this.otherFields}
+          `
+        }}
+
+      document.getElementById('showAboutMe').innerHTML= aboutMe.ShowAboutMe();
+      console.log(aboutMe)
+
+      document.getElementById('showAboutMyJob').innerHTML= aboutMyJob.ShowAboutMyJob();
+      console.log(aboutMyJob)
+      
+    </script>
+  </div>
+</body>
+</html>
