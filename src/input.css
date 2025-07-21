@@ -19,6 +19,10 @@ html{
   @apply flex flex-col w-full  max-h-0 opacity-0
   md:flex-row  md:items-center md:w-auto md:max-h-screen md:opacity-100
 }
+.nav_links.open {
+  @apply max-h-screen opacity-100;
+}
+
 .nav.nav_expanded .nav_links{
   @apply max-h-screen opacity-100 
 }

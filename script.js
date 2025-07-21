@@ -7,7 +7,7 @@ import { renderFilter } from './components/filterSection.js';
 const toggler = document.querySelector("#toggler");
 const navbar = document.querySelector(".nav");
 toggler.addEventListener("click",(e)=>{
-  navbar.classList.toggle("nav_expanded");
+navbar.classList.toggle("nav_expanded");
 })
 
 //show/hide dropdown :
