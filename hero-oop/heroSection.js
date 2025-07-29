@@ -1,6 +1,6 @@
 
-// کلاس معرفی من:
-class HeroSection {
+
+export class HeroSection {
   constructor(data){
     this.header = data.header;
     this.name = data.name;
@@ -29,19 +29,3 @@ class HeroSection {
     `
   }
 }
-const HeroData ={
-  header : "سلام به سایت من خوش اومدین",
-  name: "پروین بهرام",
-  job: "برنامه نویس فرانت اند",
-  education:"کارشناسی مهندسی نرم افزار دانشگاه پیام‌نور شهریار",
-  experience:"مدت یک ساله که فعالیت خودمو در زمینه برنامه نویسی فرانت اند شروع کردم و " ,
-  skills: ["Html-Css", "Tailwind","JavaScript","React" ],
-  aboutLink: "../aboutMe.html",
-  imageSrc: "../assets/images/me.webp",
-}
-
-const oopHero = new HeroSection(HeroData);
-
-document.addEventListener("DOMContentLoaded", ()=>{
-document.getElementById("oop-hero").innerHTML = oopHero.render();
-})

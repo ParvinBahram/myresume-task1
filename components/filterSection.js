@@ -16,7 +16,7 @@ export function renderFilter(containerSelector, renderProject) {
 
   let html = "";
 
-  // دسته‌بندی
+  //  فیلتر دسته‌بندی 
   if (enableCategory) {
     html += 
       `<div>
@@ -66,7 +66,7 @@ export function renderFilter(containerSelector, renderProject) {
     ;
   }
 
-  // فیلتر کامل‌شده
+  //فیلتر وضعیت
   if (enableComplete) {
     html += 
       `<div>
